@@ -1,0 +1,47 @@
+<!-- Write a JavaScript code that displays text “TEXT-GROWING” with increasing font size in
+the interval of 100ms in RED COLOR, when the font size reaches 50pt it displays “TEXT-
+SHRINKING” in BLUE color. Then the font size decreases to 5pt -->
+
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Program 3a</title>
+    <style>
+        .text {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <p id="text" class="text"></p>
+    <script>
+        var text = document.getElementById("text");
+        var fontsize = 5;
+
+        var interval = setInterval(grow, 1000);
+
+        function grow() {
+            text.innerHTML = 'TEXT GROWING';
+            text.setAttribute('style', "font-size: " + fontsize + "pt; color: red");
+            fontsize = fontsize + 5;
+            if (fontsize >= 50) {
+                clearInterval(interval);
+                interval = setInterval(shrink, 1000);
+            }
+        }
+
+        function shrink() {
+            fontsize = fontsize - 5;
+            text.innerHTML = 'TEXT SHRINKING';
+            text.setAttribute('style', "font-size: " + fontsize + "pt; color: blue");
+            if (fontsize === 5) {
+                clearInterval(interval);
+            }
+        }
+    </script>
+</body>
+
+</html>

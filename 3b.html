@@ -1,0 +1,54 @@
+<!-- Change the above program to add button ‘Text grow’ and ‘Text shrink’. Clicking on
+these buttons the respective function should be called. -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Program 3b</title>
+</head>
+
+<body>
+    <div style="text-align: center;">
+        <p id="text"></p>
+
+        <input type="button" value="Text grow" onclick="grow();" />
+        <input type="button" value="Text shrink" onclick="shrink();" />
+    </div>
+
+    <script>
+        var var1, var2;
+        var fontsize = 5;
+        var text = document.getElementById("text");
+
+        function grow() {
+            clearInterval(var2);
+            var1 = setInterval(grow_text, 1000);
+        }
+
+        function shrink() {
+            clearInterval(var1);
+            var2 = setInterval(shrink_text, 1000);
+        }
+
+        function grow_text() {
+            text.innerHTML = 'TEXT GROWING';
+            text.setAttribute('style', "font-size: " + fontsize + "px; color: red");
+            fontsize += 5;
+            if (fontsize >= 50) {
+                clearInterval(var1);
+            }
+        }
+
+        function shrink_text() {
+            fontsize -= 5;
+            text.innerHTML = 'TEXT SHRINKING';
+            text.setAttribute('style', "font-size: " + fontsize + "px; color: blue");
+            if (fontsize == 5) {
+                clearInterval(var2);
+            }
+        }
+    </script>
+</body>
+
+</html>
